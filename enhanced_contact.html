@@ -5,10 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom styles for social links */
+        .social-links {
+            text-align: center;
+            margin-top: 3rem;
+            color: #fff;
+        }
+
+        .social-links h3 {
+            color: #00bcd4;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #00bcd4;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            margin: 1rem;
+            background: #00bcd4;
+            color: #fff;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00796b;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact section */
+        section h2 {
+            color: #00bcd4;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #00bcd4;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        iframe {
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 640px;
+            height: 689px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Aarav Jaichand</h1>
+    <header style="background: linear-gradient(135deg, #00bcd4, #00796b); color: #fff; padding: 1.5rem 0; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h1 style="margin: 0; font-size: 3rem; font-weight: bold;">Aarav Jaichand</h1>
     </header>
     
     <nav>
@@ -18,22 +83,23 @@
         <a href="enhanced_experience.html" >Experience</a>
         <a href="enhanced_education.html" >Education</a>
         <a href="enhanced_projects.html" >Projects</a>
-        <a href="enhanced_contact.html" class="active">Contact</a>
+        <a href="enhanced_contact.html"  class="active">Contact</a>
     </nav>
+
+    <!-- Social Links Section -->
     <section class="social-links">
-        <h3>Connect with Me</h3>
+        <h2>Connect with Me</h2>
         <p>You can reach out to me on GitHub and LinkedIn:</p>
-        <ul>
-            <li><a href="https://github.com/aaravjaichand" target="_blank" class="social-link github">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/aarav-jaichand-b3787b340" target="_blank" class="social-link linkedin">LinkedIn</a></li>
-        </ul>
+        <a href="https://github.com/aaravjaichand" target="_blank" class="social-link github">GitHub</a>
+        <a href="https://www.linkedin.com/in/aarav-jaichand-b3787b340" target="_blank" class="social-link linkedin">LinkedIn</a>
     </section>
+
+    <!-- Contact Me Section -->
     <section>
         <h2>Contact Me</h2>
         <!-- Embed Google Form here -->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdp3uz6YlSm2s0_2bbL3xJGq2XLieBjYKYLDPX-E6P69oy7AQ/viewform?embedded=true" width="640" height="689" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdp3uz6YlSm2s0_2bbL3xJGq2XLieBjYKYLDPX-E6P69oy7AQ/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </section>
-    
     
     <footer>
         <p>&copy; 2024 Aarav Jaichand</p>

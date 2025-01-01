@@ -1,121 +1,170 @@
 /* General Styles */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    color: #333;
+    background: #0e1e25; /* Dark background */
+    color: #fff;
 }
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: #00bcd4; /* Turquoise background */
     color: #fff;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.8rem;
+    font-size: 3rem;
     font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Navigation */
 nav {
     display: flex;
     justify-content: center;
-    background: #fff;
-    padding: 0.5rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #006064; /* Darker blue */
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 nav a {
-    margin: 0 1rem;
+    margin: 0 1.5rem;
     text-decoration: none;
-    color: #2575fc;
+    color: #fff;
     font-weight: bold;
-    transition: color 0.3s ease;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.2s ease-in-out;
 }
 
 nav a:hover {
-    color: #6a11cb;
+    color: #00bcd4; /* Turquoise */
+    transform: scale(1.1);
 }
 
 /* Main Content Section */
 section {
     max-width: 960px;
-    margin: 2rem auto;
+    margin: 3rem auto;
     padding: 2rem;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #333; /* Darker background for content */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid #00bcd4; /* Border with turquoise */
 }
 
 section h2 {
     margin-top: 0;
-    color: #6a11cb;
-    font-size: 2rem;
-    border-bottom: 2px solid #2575fc;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+    color: #00bcd4; /* Turquoise color for headings */
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #00bcd4;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 section p, section ul {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
 
 ul {
-    list-style-type: disc;
-    padding-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #00bcd4; /* Turquoise bullet points */
+    font-size: 1.5rem;
 }
 
 /* Contact Form */
 .contact-form label {
     display: block;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     font-weight: bold;
+    font-size: 1.1rem;
+    color: #00bcd4; /* Turquoise label */
 }
 
 .contact-form input, .contact-form textarea {
     width: 100%;
-    padding: 0.8rem;
+    padding: 1rem;
     margin-top: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
+    border-radius: 10px;
     font-size: 1rem;
+    background: #444; /* Dark background for inputs */
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .contact-form button {
-    margin-top: 1.5rem;
-    padding: 0.8rem 1.5rem;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: #00bcd4; /* Turquoise button */
     color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .contact-form button:hover {
-    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    background: #006064; /* Darker turquoise on hover */
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 1rem 0;
-    background: #333;
+    padding: 2rem 0;
+    background: #006064; /* Darker blue footer */
     color: #fff;
-    margin-top: 2rem;
-    font-size: 0.9rem;
+    margin-top: 4rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Social Links Section */
+.social-links {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.social-links a {
+    color: #00bcd4; /* Turquoise social links */
+    font-size: 2rem;
+    margin: 0 15px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2);
+    color: #ffffff; /* White on hover */
 }
 
 /* Responsive Design */
@@ -125,11 +174,15 @@ footer {
     }
 
     nav a {
-        margin: 0 0.5rem;
-        font-size: 0.9rem;
+        margin: 0 0.8rem;
+        font-size: 1rem;
     }
 
     section {
         padding: 1.5rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
     }
 }
