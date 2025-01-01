@@ -1,6 +1,6 @@
 // EmailJS Configuration
 (function () {
-    emailjs.init("7DIA1QXYHngdQJuxd"); // Replace with your EmailJS user ID
+    emailjs.init("OdcrfyK-kzDQyfLM1O3c3"); // Replace with your EmailJS user ID
 })();
 
 document.querySelector("#contact-form").addEventListener("submit", function (e) {
