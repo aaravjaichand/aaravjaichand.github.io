@@ -5,37 +5,73 @@
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>Aarav Jaichand</h1>
+        <div class="hero-content">
+            <h1>About Me</h1>
+            <p class="hero-subtitle">Get to know my story and aspirations</p>
+        </div>
     </header>
     
     <nav>
-        <a href="enhanced_index.html" >Home</a>
+        <a href="enhanced_index.html">Home</a>
         <a href="enhanced_about.html" class="active">About</a>
-        <a href="enhanced_skills.html" >Skills</a>
-        <a href="enhanced_experience.html" >Experience</a>
-        <a href="enhanced_education.html" >Education</a>
-        <a href="enhanced_projects.html" >Projects</a>
-        <a href="enhanced_contact.html" >Contact</a>
+        <a href="enhanced_skills.html">Skills</a>
+        <a href="enhanced_experience.html">Experience</a>
+        <a href="enhanced_education.html">Education</a>
+        <a href="enhanced_projects.html">Projects</a>
+        <a href="enhanced_contact.html">Contact</a>
     </nav>
     
-    <section>
-        <h2>About Me</h2>
-        <div class="about-container">
-            <!-- Image Section -->
-            <div class="about-image">
-                <img src="aarav_photo.jpg" alt="Aarav Jaichand" class="profile-photo">
+    <section class="about-section">
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-image">
+                    <img src="aarav_photo.jpg" alt="Aarav Jaichand" class="profile-photo">
+                    <div class="about-social">
+                        <a href="https://github.com/aaravjaichand" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aarav-jaichand-b3787b340" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <!-- Text Section -->
-            <div class="about-text">
-                <p>Aarav Jaichand is a diligent and ambitious 9th-grade student from Dwight Englewood with an immense interest in computer science. He has been actively learning deep learning and machine learning for the past three years, working with different models to expand his knowledge in these areas. His curiosity and commitment to learning motivate him to continually develop his skills, aiming to build a solid foundation for future studies and projects.
-                    Aarav thrives in team settings, as demonstrated by his work with his school's robotics team, Absolute Zero. He collaborates effectively with teammates, contributing ideas and helping to tackle challenges together. His ability to communicate clearly and listen to others' perspectives makes him an asset to any team, and he values the importance of collective problem-solving. He is also an active member of his school's Investment Club, where he applies analytical thinking and research to understand financial markets and investment strategies. With an innate strength in mathematics and a very focused approach to academic development, Aarav wants to continue studying computer science in college and in professional settings. Outside academics, he is also a skilled and competitive tennis player known for his discipline, sportsmanship, and drive to improve continuously.</p>
-                <!-- <p>In my free time, I enjoy exploring new programming languages, contributing to open-source projects, and staying up-to-date with industry trends.</p> -->
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Who I Am</h2>
+                    <p>Aarav Jaichand is a diligent and ambitious 9th-grade student from Dwight Englewood with an immense interest in computer science. He has been actively learning deep learning and machine learning for the past three years, working with different models to expand his knowledge in these areas.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-box">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Academic Excellence</h3>
+                            <p>Honors student with awards in Math and Academic Excellence (honor roll)</p>
+                        </div>
+                        <div class="highlight-box">
+                            <i class="fas fa-robot"></i>
+                            <h3>Robotics Team</h3>
+                            <p>Active member on the freshman robotics team and tennis team</p>
+                        </div>
+                        <div class="highlight-box">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Investment Club</h3>
+                            <p>Top player in the stock game hosted by the investment club</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
     <footer>
         <p>&copy; 2024 Aarav Jaichand</p>
     </footer>
