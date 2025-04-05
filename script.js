@@ -1,31 +1,164 @@
 // EmailJS Configuration
 (function () {
-    emailjs.init("OdcrfyK-kzDQyfLM1O3c3"); // Replace with your EmailJS user ID
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init("7DIA1QXYHngdQJuxd");
+    }
 })();
 
-document.querySelector("#contact-form").addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent default form submission
+// Wait for both DOM and EmailJS to be ready
+function initializeForm() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
 
-    // Get form values
-    const name = document.querySelector("#name").value;
-    const email = document.querySelector("#email").value;
-    const message = document.querySelector("#message").value;
+            console.log('Form data:', data);
 
-    // Send email using EmailJS
-    emailjs
-        .send("service_hhrrtts", "template_e0mp1qo", {
-            name: name,
-            email: email,
-            message: message,
-        })
-        .then(
-            function () {
-                alert("Message sent successfully!");
-                document.querySelector("#contact-form").reset(); // Reset the form
-            },
-            function (error) {
-                alert("Failed to send message. Please try again later.");
-                console.error("EmailJS Error:", error);
+            // Get button and store original state
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            const originalButtonState = submitButton.disabled;
+
+            try {
+                // Show loading state
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitButton.disabled = true;
+
+                console.log('Attempting to send email...');
+
+                // Add timeout to prevent hanging
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error('Request timed out')), 10000); // 10 second timeout
+                });
+
+                // Race between email sending and timeout
+                const result = await Promise.race([
+                    new Promise((resolve, reject) => {
+                        if (typeof emailjs === 'undefined') {
+                            reject(new Error('EmailJS not initialized'));
+                            return;
+                        }
+                        emailjs.send('service_hhrrtts', 'template_e0mp1qo', data, '7DIA1QXYHngdQJuxd')
+                            .then(resolve)
+                            .catch(reject);
+                    }),
+                    timeoutPromise
+                ]);
+
+                console.log('Email sent successfully:', result);
+
+                // Show success message
+                showNotification('Message sent successfully!', 'success');
+                contactForm.reset();
+            } catch (error) {
+                // Show error message
+                console.error('Detailed error:', error);
+                if (error.message === 'Request timed out') {
+                    showNotification('Request timed out. Please try again.', 'error');
+                } else if (error.message === 'EmailJS not initialized') {
+                    showNotification('Email service not ready. Please refresh the page.', 'error');
+                } else if (error.message.includes('message port closed')) {
+                    showNotification('Connection error. Please try again.', 'error');
+                } else {
+                    showNotification('Failed to send message. Please try again.', 'error');
+                }
+            } finally {
+                // Reset button state
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = originalButtonState;
             }
-        );
-});
+        });
+    } else {
+        console.error('Contact form not found');
+    }
+}
+
+// Try to initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initializeForm);
+
+// Also try when window loads
+window.addEventListener('load', initializeForm);
+
+function showNotification(message, type) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+
+    // Add to page
+    document.body.appendChild(notification);
+
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+// Add notification styles
+const style = document.createElement('style');
+style.textContent = `
+    .notification {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        background: var(--background-light);
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+    }
+
+    .notification.success {
+        border-left: 4px solid var(--success-color);
+    }
+
+    .notification.error {
+        border-left: 4px solid #ef4444;
+    }
+
+    .notification.fade-out {
+        animation: slideOut 0.3s ease-out forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);

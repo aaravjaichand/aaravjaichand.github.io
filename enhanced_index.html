@@ -1,36 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Aarav Jaichand - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Aarav Jaichand</h1>
-    </header>
-    
     <nav>
         <a href="enhanced_index.html" class="active">Home</a>
-        <a href="enhanced_about.html" >About</a>
-        <a href="enhanced_skills.html" >Skills</a>
-        <a href="enhanced_experience.html" >Experience</a>
-        <a href="enhanced_education.html" >Education</a>
-        <a href="enhanced_projects.html" >Projects</a>
+        <a href="enhanced_about.html">About</a>
+        <a href="enhanced_skills.html">Skills</a>
+        <a href="enhanced_experience.html">Experience</a>
+        <a href="enhanced_education.html">Education</a>
+        <a href="enhanced_projects.html">Projects</a>
         <a href="enhanced_contact.html">Contact</a>
     </nav>
-    
-    <section>
-        
-        <p>Welcome to my professional portfolio. Navigate through the sections to learn more about my background, skills, experiences, and projects.</p>
-    
+
+    <header>
+        <div class="hero-content">
+            <h1>Aarav Jaichand</h1>
+            <p class="hero-subtitle">Software Engineer & Full Stack Developer</p>
+            <div class="hero-cta">
+                <a href="enhanced_about.html" class="btn-primary">Learn More</a>
+                <a href="enhanced_contact.html" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="featured-section">
+        <div class="card">
+            <h2>Welcome to My Portfolio</h2>
+            <p>I'm a passionate software engineer with expertise in full-stack development. Through this portfolio, you'll discover my journey, skills, and the projects I've worked on.</p>
+        </div>
     </section>
+
+    <section class="highlights-section">
+        <div class="card">
+            <h2>What I Do</h2>
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Creating responsive and dynamic web applications</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Development</h3>
+                    <p>Building cross-platform mobile applications</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-database"></i>
+                    <h3>Database Design</h3>
+                    <p>Designing and implementing efficient database solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2024 Aarav Jaichand</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Aarav Jaichand. All rights reserved.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

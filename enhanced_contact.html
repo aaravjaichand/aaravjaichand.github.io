@@ -3,106 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Contact - Aarav Jaichand</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Custom styles for social links */
-        .social-links {
-            text-align: center;
-            margin-top: 3rem;
-            color: #fff;
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        function initializeEmailJS() {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("7DIA1QXYHngdQJuxd")
+                    .then(function() {
+                        console.log('EmailJS initialized successfully');
+                    })
+                    .catch(function(error) {
+                        console.error('EmailJS initialization failed:', error);
+                    });
+            } else {
+                console.error('EmailJS not loaded');
+            }
         }
 
-        .social-links h3 {
-            color: #00bcd4;
-            font-size: 2rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            border-bottom: 3px solid #00bcd4;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
+        // Try to initialize when the script loads
+        initializeEmailJS();
 
-        .social-links p {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-links a {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            margin: 1rem;
-            background: #00bcd4;
-            color: #fff;
-            font-size: 1.1rem;
-            border-radius: 25px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #00796b;
-            transform: translateY(-4px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Contact section */
-        section h2 {
-            color: #00bcd4;
-            font-size: 2rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            border-bottom: 3px solid #00bcd4;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        iframe {
-            border: none;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 640px;
-            height: 689px;
-            margin-top: 20px;
-        }
-    </style>
+        // Also try when the window loads
+        window.addEventListener('load', initializeEmailJS);
+    </script>
 </head>
 <body>
-    <header style="background: linear-gradient(135deg, #00bcd4, #00796b); color: #fff; padding: 1.5rem 0; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <h1 style="margin: 0; font-size: 3rem; font-weight: bold;">Aarav Jaichand</h1>
-    </header>
-    
     <nav>
-        <a href="enhanced_index.html" >Home</a>
-        <a href="enhanced_about.html" >About</a>
-        <a href="enhanced_skills.html" >Skills</a>
-        <a href="enhanced_experience.html" >Experience</a>
-        <a href="enhanced_education.html" >Education</a>
-        <a href="enhanced_projects.html" >Projects</a>
-        <a href="enhanced_contact.html"  class="active">Contact</a>
+        <a href="enhanced_index.html">Home</a>
+        <a href="enhanced_about.html">About</a>
+        <a href="enhanced_skills.html">Skills</a>
+        <a href="enhanced_experience.html">Experience</a>
+        <a href="enhanced_education.html">Education</a>
+        <a href="enhanced_projects.html">Projects</a>
+        <a href="enhanced_contact.html" class="active">Contact</a>
     </nav>
 
-    <!-- Social Links Section -->
-    <section class="social-links">
-        <h2>Connect with Me</h2>
-        <p>You can reach out to me on GitHub and LinkedIn:</p>
-        <a href="https://github.com/aaravjaichand" target="_blank" class="social-link github">GitHub</a>
-        <a href="https://www.linkedin.com/in/aarav-jaichand-b3787b340" target="_blank" class="social-link linkedin">LinkedIn</a>
+    <header>
+        <div class="hero-content">
+            <h1>Get in Touch</h1>
+            <p class="hero-subtitle">Let's work together on something amazing</p>
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="card">
+                    <h2>Contact Information</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email</h3>
+                                <p>aaravj413@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3>Location</h3>
+                                <p>New Jersey, USA</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>+1 (201) 551-2759</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/aaravjaichand" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aarav-jaichand-b3787b340" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-container">
+                <div class="card">
+                    <h2>Send a Message</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Contact Me Section -->
-    <section>
-        <h2>Contact Me</h2>
-        <!-- Embed Google Form here -->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdp3uz6YlSm2s0_2bbL3xJGq2XLieBjYKYLDPX-E6P69oy7AQ/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </section>
-    
     <footer>
-        <p>&copy; 2024 Aarav Jaichand</p>
+        <p>&copy; 2024 Aarav Jaichand. All rights reserved.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
