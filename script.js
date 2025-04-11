@@ -167,28 +167,47 @@ document.head.appendChild(style);
 document.addEventListener('DOMContentLoaded', function() {
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const nav = document.querySelector('nav');
+    const body = document.body;
     
     if (mobileNavToggle) {
-        mobileNavToggle.addEventListener('click', function() {
+        mobileNavToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
             nav.classList.toggle('active');
-            // Change icon
+            body.classList.toggle('menu-open');
+
+            // Change icon with smooth transition
             const icon = this.querySelector('i');
             if (nav.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
+                icon.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    icon.style.transform = 'rotate(0)';
+                }, 150);
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    icon.style.transform = 'rotate(0)';
+                }, 150);
             }
         });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!nav.contains(event.target) && !mobileNavToggle.contains(event.target)) {
+            if (nav.classList.contains('active') &&
+                !nav.contains(event.target) &&
+                !mobileNavToggle.contains(event.target)) {
                 nav.classList.remove('active');
+                body.classList.remove('menu-open');
                 const icon = mobileNavToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    icon.style.transform = 'rotate(0)';
+                }, 150);
             }
         });
 
@@ -197,10 +216,48 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 nav.classList.remove('active');
+                body.classList.remove('menu-open');
                 const icon = mobileNavToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    icon.style.transform = 'rotate(0)';
+                }, 150);
             });
         });
+
+        // Handle touch events for better mobile interaction
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        nav.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        nav.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            const swipeThreshold = 100;
+            const swipeDistance = touchEndX - touchStartX;
+
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0 && nav.classList.contains('active')) {
+                    // Swipe right - close menu
+                    nav.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    const icon = mobileNavToggle.querySelector('i');
+                    icon.style.transform = 'rotate(180deg)';
+                    setTimeout(() => {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        icon.style.transform = 'rotate(0)';
+                    }, 150);
+                }
+            }
+        }
     }
 });
