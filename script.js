@@ -16,9 +16,9 @@ function initializeForm() {
             // Get form data
             const formData = new FormData(contactForm);
             const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                subject: formData.get('subject'),
+                to_name: "Aarav Jaichand Maintenance Team",
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
                 message: formData.get('message')
             };
 
