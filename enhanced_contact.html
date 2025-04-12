@@ -11,22 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Load EmailJS before our script -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-            // Wait for EmailJS to be fully loaded
-            window.addEventListener('load', function () {
-            if (typeof emailjs !== 'undefined') {
-                emailjs.init("7DIA1QXYHngdQJuxd")
-                    .then(function() {
-                        console.log('EmailJS initialized successfully');
-                    })
-                    .catch(function(error) {
-                        console.error('EmailJS initialization failed:', error);
-                    });
-            } else {
-                console.error('EmailJS not loaded');
-            }
-        });
-    </script>
+    <!-- Add reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <nav>
@@ -106,6 +92,10 @@
                         <div class="form-group">
                             <label for="message">Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <!-- Add reCAPTCHA element -->
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LdfAxYrAAAAACvUKvSgOQsWbprkroJzlOHCv2Cf"></div>
                         </div>
                         <button type="submit" class="btn-primary">
                             <i class="fas fa-paper-plane"></i>
