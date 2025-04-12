@@ -9,9 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Load EmailJS before our script -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
-        function initializeEmailJS() {
+            // Wait for EmailJS to be fully loaded
+            window.addEventListener('load', function () {
             if (typeof emailjs !== 'undefined') {
                 emailjs.init("7DIA1QXYHngdQJuxd")
                     .then(function() {
@@ -23,13 +25,7 @@
             } else {
                 console.error('EmailJS not loaded');
             }
-        }
-
-        // Try to initialize when the script loads
-        initializeEmailJS();
-
-        // Also try when the window loads
-        window.addEventListener('load', initializeEmailJS);
+        });
     </script>
 </head>
 <body>
@@ -101,6 +97,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="from_email" required>
+                            <small class="form-help">We'll verify your email before sending</small>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
@@ -124,6 +121,7 @@
         <p>&copy; 2025 Aarav Jaichand. All rights reserved.</p>
     </footer>
 
+    <!-- Load our script after EmailJS -->
     <script src="script.js"></script>
 </body>
 </html>

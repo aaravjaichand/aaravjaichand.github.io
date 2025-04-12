@@ -1,9 +1,16 @@
 // EmailJS Configuration
-(function () {
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init("7DIA1QXYHngdQJuxd");
-    }
-})();
+let emailjsInitialized = false;
+
+// Function to check if EmailJS is ready
+function isEmailJSReady() {
+    return typeof emailjs !== 'undefined' && emailjsInitialized;
+}
+
+// Email validation function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
 // Wait for both DOM and EmailJS to be ready
 function initializeForm() {
@@ -13,14 +20,31 @@ function initializeForm() {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            // Check if EmailJS is ready
+            if (!isEmailJSReady()) {
+                showNotification('Email service not ready. Please refresh the page.', 'error');
+                return;
+            }
+
             // Get form data
             const formData = new FormData(contactForm);
+            const name = formData.get('from_name');
+            const email = formData.get('from_email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+
+            // Validate email
+            if (!isValidEmail(email)) {
+                showNotification('Please enter a valid email address', 'error');
+                return;
+            }
+
             const data = {
                 to_name: "Aarav Jaichand Maintenance Team",
-                from_name: formData.get('name'),
-                from_email: formData.get('email'),
-                message: formData.get('message'),
-                subject: formData.get('subject')  // Keep subject in case it's needed
+                from_name: name,
+                from_email: email,
+                message: message,
+                subject: subject
             };
 
             console.log('Form data being sent:', data);  // Debug log
@@ -36,6 +60,7 @@ function initializeForm() {
                 submitButton.disabled = true;
 
                 console.log('Attempting to send email...');
+                console.log('EmailJS available:', isEmailJSReady());
 
                 // Add timeout to prevent hanging
                 const timeoutPromise = new Promise((_, reject) => {
@@ -45,13 +70,24 @@ function initializeForm() {
                 // Race between email sending and timeout
                 const result = await Promise.race([
                     new Promise((resolve, reject) => {
-                        if (typeof emailjs === 'undefined') {
+                        if (!isEmailJSReady()) {
                             reject(new Error('EmailJS not initialized'));
                             return;
                         }
+
+                        // Log the service ID and template ID for debugging
+                        console.log('Using service ID: service_hhrrtts');
+                        console.log('Using template ID: template_e0mp1qo');
+
                         emailjs.send('service_hhrrtts', 'template_e0mp1qo', data)
-                            .then(resolve)
-                            .catch(reject);
+                            .then(response => {
+                                console.log('EmailJS response:', response);
+                                resolve(response);
+                            })
+                            .catch(error => {
+                                console.error('EmailJS error details:', error);
+                                reject(error);
+                            });
                     }),
                     timeoutPromise
                 ]);
@@ -71,7 +107,7 @@ function initializeForm() {
                 } else if (error.message.includes('message port closed')) {
                     showNotification('Connection error. Please try again.', 'error');
                 } else {
-                    showNotification('Failed to send message. Please try again.', 'error');
+                    showNotification('Failed to send message: ' + error.message, 'error');
                 }
             } finally {
                 // Reset button state
@@ -85,10 +121,22 @@ function initializeForm() {
 }
 
 // Try to initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', initializeForm);
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM Content Loaded - Initializing form');
+    initializeForm();
+});
 
 // Also try when window loads
-window.addEventListener('load', initializeForm);
+window.addEventListener('load', function () {
+    console.log('Window Loaded - Initializing form');
+    initializeForm();
+});
+
+// Listen for EmailJS initialization success
+window.addEventListener('emailjsInitialized', function () {
+    console.log('EmailJS initialized event received');
+    emailjsInitialized = true;
+});
 
 function showNotification(message, type) {
     // Create notification element
