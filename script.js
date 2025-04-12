@@ -19,10 +19,11 @@ function initializeForm() {
                 to_name: "Aarav Jaichand Maintenance Team",
                 from_name: formData.get('name'),
                 from_email: formData.get('email'),
-                message: formData.get('message')
+                message: formData.get('message'),
+                subject: formData.get('subject')  // Keep subject in case it's needed
             };
 
-            console.log('Form data:', data);
+            console.log('Form data being sent:', data);  // Debug log
 
             // Get button and store original state
             const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -48,7 +49,7 @@ function initializeForm() {
                             reject(new Error('EmailJS not initialized'));
                             return;
                         }
-                        emailjs.send('service_hhrrtts', 'template_e0mp1qo', data, '7DIA1QXYHngdQJuxd')
+                        emailjs.send('service_hhrrtts', 'template_e0mp1qo', data)
                             .then(resolve)
                             .catch(reject);
                     }),
