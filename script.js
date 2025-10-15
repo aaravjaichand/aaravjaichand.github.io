@@ -1,102 +1,107 @@
-// Custom Cursor
-const cursor = document.querySelector('.cursor');
-const corners = {
-    topLeft: document.querySelector('.cursor-corner.top-left'),
-    topRight: document.querySelector('.cursor-corner.top-right'),
-    bottomLeft: document.querySelector('.cursor-corner.bottom-left'),
-    bottomRight: document.querySelector('.cursor-corner.bottom-right')
-};
+// Custom Cursor - Desktop Only
+// Check if device is desktop (has fine pointer and hover capability)
+const isDesktop = window.matchMedia('(min-width: 769px) and (hover: hover) and (pointer: fine)').matches;
 
-let mouseX = 0;
-let mouseY = 0;
-let currentCard = null;
+if (isDesktop) {
+    const cursor = document.querySelector('.cursor');
+    const corners = {
+        topLeft: document.querySelector('.cursor-corner.top-left'),
+        topRight: document.querySelector('.cursor-corner.top-right'),
+        bottomLeft: document.querySelector('.cursor-corner.bottom-left'),
+        bottomRight: document.querySelector('.cursor-corner.bottom-right')
+    };
 
-// Track mouse position
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentCard = null;
 
-    if (!currentCard) {
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (!currentCard) {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        }
+    });
+
+    // Set default cursor position (small crosshair)
+    function setDefaultCursor() {
+        const offset = 7.5; // Half of corner size
+
+        corners.topLeft.style.left = -offset + 'px';
+        corners.topLeft.style.top = -offset + 'px';
+
+        corners.topRight.style.left = offset + 'px';
+        corners.topRight.style.top = -offset + 'px';
+
+        corners.bottomLeft.style.left = -offset + 'px';
+        corners.bottomLeft.style.top = offset + 'px';
+
+        corners.bottomRight.style.left = offset + 'px';
+        corners.bottomRight.style.top = offset + 'px';
+    }
+
+    // Expand cursor to match card
+    function expandToCard(card) {
+        const rect = card.getBoundingClientRect();
+
+        // Calculate positions relative to cursor center
+        const leftOffset = rect.left - mouseX;
+        const rightOffset = rect.right - mouseX;
+        const topOffset = rect.top - mouseY;
+        const bottomOffset = rect.bottom - mouseY;
+
+        corners.topLeft.style.left = leftOffset + 'px';
+        corners.topLeft.style.top = topOffset + 'px';
+
+        corners.topRight.style.left = (rightOffset - 15) + 'px'; // Subtract corner width
+        corners.topRight.style.top = topOffset + 'px';
+
+        corners.bottomLeft.style.left = leftOffset + 'px';
+        corners.bottomLeft.style.top = (bottomOffset - 15) + 'px'; // Subtract corner height
+
+        corners.bottomRight.style.left = (rightOffset - 15) + 'px';
+        corners.bottomRight.style.top = (bottomOffset - 15) + 'px';
+
+        // Position cursor at mouse
         cursor.style.left = mouseX + 'px';
         cursor.style.top = mouseY + 'px';
     }
-});
 
-// Set default cursor position (small crosshair)
-function setDefaultCursor() {
-    const offset = 7.5; // Half of corner size
+    // Initialize default cursor
+    setDefaultCursor();
 
-    corners.topLeft.style.left = -offset + 'px';
-    corners.topLeft.style.top = -offset + 'px';
+    // Add hover listeners to all cards and links
+    const interactiveElements = document.querySelectorAll('.card, .github-link, .linkedin-link, .visit-button, .form-submit, .form-input, .form-textarea');
 
-    corners.topRight.style.left = offset + 'px';
-    corners.topRight.style.top = -offset + 'px';
-
-    corners.bottomLeft.style.left = -offset + 'px';
-    corners.bottomLeft.style.top = offset + 'px';
-
-    corners.bottomRight.style.left = offset + 'px';
-    corners.bottomRight.style.top = offset + 'px';
-}
-
-// Expand cursor to match card
-function expandToCard(card) {
-    const rect = card.getBoundingClientRect();
-
-    // Calculate positions relative to cursor center
-    const leftOffset = rect.left - mouseX;
-    const rightOffset = rect.right - mouseX;
-    const topOffset = rect.top - mouseY;
-    const bottomOffset = rect.bottom - mouseY;
-
-    corners.topLeft.style.left = leftOffset + 'px';
-    corners.topLeft.style.top = topOffset + 'px';
-
-    corners.topRight.style.left = (rightOffset - 15) + 'px'; // Subtract corner width
-    corners.topRight.style.top = topOffset + 'px';
-
-    corners.bottomLeft.style.left = leftOffset + 'px';
-    corners.bottomLeft.style.top = (bottomOffset - 15) + 'px'; // Subtract corner height
-
-    corners.bottomRight.style.left = (rightOffset - 15) + 'px';
-    corners.bottomRight.style.top = (bottomOffset - 15) + 'px';
-
-    // Position cursor at mouse
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-}
-
-// Initialize default cursor
-setDefaultCursor();
-
-// Add hover listeners to all cards and links
-const interactiveElements = document.querySelectorAll('.card, .github-link, .linkedin-link, .visit-button, .form-submit, .form-input, .form-textarea');
-
-interactiveElements.forEach(element => {
-    element.addEventListener('mouseenter', () => {
-        currentCard = element;
-        expandToCard(element);
-    });
-
-    element.addEventListener('mouseleave', () => {
-        currentCard = null;
-        setDefaultCursor();
-    });
-
-    // Update cursor position on mouse move over card
-    element.addEventListener('mousemove', () => {
-        if (currentCard === element) {
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            currentCard = element;
             expandToCard(element);
+        });
+
+        element.addEventListener('mouseleave', () => {
+            currentCard = null;
+            setDefaultCursor();
+        });
+
+        // Update cursor position on mouse move over card
+        element.addEventListener('mousemove', () => {
+            if (currentCard === element) {
+                expandToCard(element);
+            }
+        });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (currentCard) {
+            expandToCard(currentCard);
         }
     });
-});
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    if (currentCard) {
-        expandToCard(currentCard);
-    }
-});
+}
 
 // EmailJS Configuration
 let emailjsInitialized = false;

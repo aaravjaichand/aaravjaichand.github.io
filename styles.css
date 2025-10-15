@@ -10,7 +10,17 @@ body {
     color: #ffffff;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    cursor: none;
+}
+
+/* Custom cursor only on desktop */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+
+    .form-submit {
+        cursor: none;
+    }
 }
 
 .container {
@@ -273,7 +283,7 @@ body {
     font-weight: 500;
     transition: all 0.3s ease;
     width: 100%;
-    cursor: none;
+    cursor: pointer;
 }
 
 .form-submit:hover {
@@ -359,38 +369,47 @@ body {
     }
 }
 
-/* Custom Cursor */
-.cursor {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
+/* Custom Cursor - Desktop Only */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+    .cursor {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        mix-blend-mode: difference;
+    }
+
+    .cursor-corner {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #ffffff;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .cursor-corner.top-left {
+        border-right: none;
+        border-bottom: none;
+    }
+
+    .cursor-corner.top-right {
+        border-left: none;
+        border-bottom: none;
+    }
+
+    .cursor-corner.bottom-left {
+        border-right: none;
+        border-top: none;
+    }
+
+    .cursor-corner.bottom-right {
+        border-left: none;
+        border-top: none;
+    }
 }
 
-.cursor-corner {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border: 2px solid #ffffff;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.cursor-corner.top-left {
-    border-right: none;
-    border-bottom: none;
-}
-
-.cursor-corner.top-right {
-    border-left: none;
-    border-bottom: none;
-}
-
-.cursor-corner.bottom-left {
-    border-right: none;
-    border-top: none;
-}
-
-.cursor-corner.bottom-right {
-    border-left: none;
-    border-top: none;
+/* Hide custom cursor on mobile */
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+    .cursor {
+        display: none !important;
+    }
 }
